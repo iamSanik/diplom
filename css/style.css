@@ -1,0 +1,203 @@
+/* Общие стили */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin: 0 50px 0 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75vw;
+  align-items: center;
+}
+
+.header__cat {
+  display: flex;
+  flex-direction: row;
+  width: 70vw;
+  justify-content: space-around;
+  margin-right: 35px;
+  align-items: center;
+}
+
+.header__user {
+  display: flex;
+  flex-direction: row;
+  width: 20vw;
+
+}
+
+/* Стили для ссылок навигации */
+.header__cat-link {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.header__cat-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: black;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.header__cat-link:hover {
+  color: blue;
+}
+
+.header__cat-link.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.header__cat-link.from-right::after {
+  transform-origin: bottom right;
+}
+
+/* Стили для логотипа */
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+/* Стили для поисковой строки */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: -50px;
+}
+
+.search-container p {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.search-container input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 150px;
+  transition: border-color 0.3s ease;
+}
+
+.search-container input[type="text"]:focus {
+  outline: none;
+  border-color: blue;
+}
+
+/* Стили для профиля */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    position: relative;/*делаем что бы registrationForm позиционировался относительно него*/
+}
+
+.profile-container p {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.profile-container a {
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.profile-container a:hover {
+  color: blue;
+}
+
+summary {
+    list-style: none;
+}
+/* Стили для кнопки "sign up" */
+.sign_up {
+    background-color: #437bce; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* Стили для details, summary и формы регистрации */
+#registrationForm {
+    /*margin-top: 10px; Удаляем отступ так как он нам не нужен*/
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 15vw; /* Увеличил ширину*/
+    z-index: 10; /* Устанавливаем z-index, чтобы форма была поверх других элементов */
+    background-color: #fff; /*Добавим фон, что бы форма не была прозрачной */
+    padding: 15px; /* Увеличил отступы внутри формы*/
+    border: 1px solid #ccc; /*добавим рамку вокруг формы*/
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);/*добавим тень вокруг формы*/
+    border-radius: 5px; /* Закруглил края */
+}
+
+#registrationForm input[type="text"],
+#registrationForm input[type="email"],
+#registrationForm input[type="password"] {
+  width: calc(100% - 20px); /* Подгоняем ширину инпутов под форму с учетом паддинга*/
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Включаем паддинг в ширину */
+}
+#registrationForm input[type="submit"]{
+  background-color: #437bce;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+#registrationForm input[type="submit"]:hover{
+  background-color: #2e5ba4;
+}
+
+#registrationForm label {
+  display: block; /* чтобы label был блочным элементом */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form{
+display: none;
+}
+
+
+.form:hover{
+  display: flex;
+}
