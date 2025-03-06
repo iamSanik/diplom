@@ -1,4 +1,4 @@
-/* Общие стили */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -41,7 +41,7 @@ body {
 
 }
 
-/* Стили для ссылок навигации */
+
 .header__cat-link {
   position: relative;
   cursor: pointer;
@@ -75,13 +75,13 @@ body {
   transform-origin: bottom right;
 }
 
-/* Стили для логотипа */
+
 .logo {
   width: 200px;
   height: 200px;
 }
 
-/* Стили для поисковой строки */
+
 .search-container {
   display: flex;
   align-items: center;
@@ -107,12 +107,12 @@ body {
   border-color: blue;
 }
 
-/* Стили для профиля */
+
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-    position: relative;/*делаем что бы registrationForm позиционировался относительно него*/
+    position: relative;
 }
 
 .profile-container p {
@@ -135,9 +135,9 @@ body {
 summary {
     list-style: none;
 }
-/* Стили для кнопки "sign up" */
+
 .sign_up {
-    background-color: #437bce; /* Green */
+    background-color: #437bce; 
     border: none;
     color: white;
     padding: 8px 16px;
@@ -149,30 +149,30 @@ summary {
     cursor: pointer;
     border-radius: 5px;
 }
-/* Стили для details, summary и формы регистрации */
+
 #registrationForm {
-    /*margin-top: 10px; Удаляем отступ так как он нам не нужен*/
+    
     position: absolute;
     top: 100%;
     left: 0;
-    width: 15vw; /* Увеличил ширину*/
-    z-index: 10; /* Устанавливаем z-index, чтобы форма была поверх других элементов */
-    background-color: #fff; /*Добавим фон, что бы форма не была прозрачной */
-    padding: 15px; /* Увеличил отступы внутри формы*/
-    border: 1px solid #ccc; /*добавим рамку вокруг формы*/
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);/*добавим тень вокруг формы*/
-    border-radius: 5px; /* Закруглил края */
+    width: 15vw; 
+    z-index: 10; 
+    background-color: #fff; 
+    padding: 15px; 
+    border: 1px solid #ccc; 
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px; 
 }
 
 #registrationForm input[type="text"],
 #registrationForm input[type="email"],
 #registrationForm input[type="password"] {
-  width: calc(100% - 20px); /* Подгоняем ширину инпутов под форму с учетом паддинга*/
+  width: calc(100% - 20px); 
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* Включаем паддинг в ширину */
+  box-sizing: border-box; 
 }
 #registrationForm input[type="submit"]{
   background-color: #437bce;
@@ -188,7 +188,7 @@ summary {
 }
 
 #registrationForm label {
-  display: block; /* чтобы label был блочным элементом */
+  display: block; 
   margin-bottom: 5px;
   font-weight: bold;
 }
