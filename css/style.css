@@ -79,6 +79,7 @@ body {
 .logo {
   width: 200px;
   height: 200px;
+  border-radius: 15%;
 }
 
 
@@ -154,7 +155,7 @@ summary {
     
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
     width: 15vw; 
     z-index: 10; 
     background-color: #fff; 

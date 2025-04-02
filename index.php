@@ -24,7 +24,7 @@
             <div class="header__user">
                 <div class="profile-container">
                     <details id="registrationDetails">
-                        <summary style="cursor: pointer;" class="sign_up" onclick="govno()">sign up</summary>
+                        <summary style="cursor: pointer;" class="sign_up" >sign up</summary>
                         <div id="registrationForm">
                             <form action="php/reg.php" method="post">
                                 <label for="username">Имя пользователя:</label><br>
@@ -33,7 +33,7 @@
                                 <input type="email" id="email" name="email" required><br>
                                 <label for="password">Пароль:</label><br>
                                 <input type="password" id="password" name="password" required><br>
-                                <input type="submit" value="Зарегистрироваться">
+                                <input type="submit" value="зарегистрироваться">
                             </form>
                         </div>
                     </details>
@@ -43,16 +43,6 @@
     </header>
 
     <main>
-        <section></section>
-        <form class="form" action="php/reg.php" method="post">
-            <label for="username">Имя пользователя:</label><br>
-            <input type="text" id="username" name="username" required><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br>
-            <label for="password">Пароль:</label><br>
-            <input type="password" id="password" name="password" required><br>
-            <input type="submit" value="Зарегистрироваться">
-        </form>
 
     </main>
 </body>
