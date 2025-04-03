@@ -26,9 +26,11 @@
                     <details id="registrationDetails">
                         <summary style="cursor: pointer;" class="sign_up" >sign in</summary>
                         <div id="registrationForm">
-                            <form action="php/auth.php" method="post">
-                                <label for="username">Введите имя пользователя или email</label><br>
+                            <form action="php/reg.php" method="post">
+                                <label for="username">Имя пользователя:</label><br>
                                 <input type="text" id="username" name="username" required><br>
+                                <label for="email">Email:</label><br>
+                                <input type="email" id="email" name="email" required><br>
                                 <label for="password">Пароль:</label><br>
                                 <input type="password" id="password" name="password" required><br>
                                 <input type="submit" value="войти">
