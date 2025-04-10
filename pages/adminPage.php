@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/script.js" defer></script>
     <title>Корпоративное хранилище</title>
 </head>
 
 <body>
     <header class="header">
-        <a href="#"><img class="logo" src="images/logo.webp" alt="Логотип компании"></a>
+        <a href="#"><img class="logo" src="../images/logo.webp" alt="Логотип компании"></a>
         <nav class="header__nav">
             <div class="header__cat">
                 <a href="#" class="header__cat-link active">Главная</a>
