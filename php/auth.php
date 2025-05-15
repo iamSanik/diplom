@@ -3,7 +3,7 @@ session_start();
 if(!empty($_POST['username']) 
     && !empty($_POST['password'])){
         require_once "../db/connection.php";
-        $checkUser = $conn->prepare('select login, email, role, password from users where login = ? or email = ?');
+        $checkUser = $conn->prepare('select * from users where login = ? or email = ?');
         $checkUser->execute(array($_POST['username'], $_POST['username']));
         $checkUser = $checkUser->fetch();
         if($checkUser && $checkUser['password'] == $_POST['password']){

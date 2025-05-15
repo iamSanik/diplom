@@ -1,7 +1,8 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family:'Comfortaa', cursive;
+  background-color: #ffffff; /* Белый фон */
 }
 .header {
   position: fixed;
@@ -12,9 +13,10 @@ body {
   z-index: 100;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
-  margin: 0 50px 0 50px;
+  padding: 0 50px 0 50px;
   justify-content: space-between;
   align-items: center;
+  background-color: #e9f7ff;
 }
 
 .header__nav {
@@ -46,7 +48,7 @@ body {
   position: relative;
   cursor: pointer;
   text-decoration: none;
-  color: black;
+  color: #004d99;
   transition: color 0.3s ease;
 }
 

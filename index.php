@@ -8,16 +8,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e6f2ff;
+            background-color: #ffffff; 
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            
         }
 
         .authorization-form {
-            background-color: white;
+            background-color: #e9f7ff;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 255, 0.1);
             padding: 40px;
@@ -61,8 +62,8 @@
         .form-button {
             width: 100%;
             padding: 12px;
-            background-color: #1e40af;
-            color: white;
+            background-color: #6ca6cf; /* Голубой акцент */
+            color: #ffffff; /* Белый текст */
             border: none;
             border-radius: 8px;
             font-size: 18px;

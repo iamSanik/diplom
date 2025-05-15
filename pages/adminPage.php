@@ -1,10 +1,21 @@
+<? session_start();
+
+if (!$_SESSION['role']) {
+    header('location: userPage.php');
+}
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <script src="../js/script.js" defer></script>
     <title>Корпоративное хранилище</title>
 </head>
@@ -24,7 +35,7 @@
             <div class="header__user">
                 <div class="profile-container">
                     <details id="registrationDetails">
-                        <summary style="cursor: pointer;" class="sign_up" >sign in</summary>
+                        <summary style="cursor: pointer;" class="sign_up">sign in</summary>
                         <div id="registrationForm">
                             <form action="php/reg.php" method="post">
                                 <label for="username">Имя пользователя:</label><br>
@@ -49,4 +60,3 @@
 
 
 </html>
-

@@ -1,10 +1,13 @@
-<? session_start();
-
-if ($_SESSION['role'] == 1) {
-    header('location: adminPage.php');
-}
-
+<?php
+session_start();
+if (
+    isset($_SESSION['login']) &&
+    !empty($_SESSION['login']) &&
+    isset($_SESSION['id']) &&
+    !empty($_SESSION['id'])
+):
 ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -12,10 +15,12 @@ if ($_SESSION['role'] == 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/files.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <script src="../js/script.js" defer></script>
+    <script src="../js/files.js" defer></script>
     <title>Корпоративное хранилище</title>
 </head>
 
@@ -48,11 +53,40 @@ if ($_SESSION['role'] == 1) {
             </div>
         </nav>
     </header>
-
     <main>
-
+        <div class="file-upload-form">
+  <h2 class="form-title">Загрузить файлы</h2>
+  
+  <form action="../php/sendFile.php" method="post" enctype="multipart/form-data">
+  <div class="file-upload-area">
+    <div class="file-upload-icon">📁</div>
+    <p class="file-upload-text">Перетащите файлы сюда или нажмите для выбора</p>
+    <p class="file-upload-hint">Поддерживаемые форматы: JPG, PNG, PDF, DOC до 10 МБ</p>
+    <input type="button" id="addFileBtn" value="Добавить файл">
+    <input type="file" id="fileInput" style="display: none;">  
+    <div id="fileList" style="margin-top:10px">Выбранные файлы: <ul style="width: fit-content; margin: auto;"></ul></div>
+  </div>
+  
+  <button type="submit" class="submit-button" name="fileBttn">Загрузить файлы</button>
+</div>
+</form>
     </main>
-</body>
 
+    </html>
+<? else: ?>
 
-</html>
+    <!DOCTYPE html>
+    <html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>только для авторизированных пользователей</h1>
+    </body>
+
+    </html>
+<? endif ?>
