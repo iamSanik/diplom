@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+
+require_once '../db/connection.php';
+$users = $conn -> prepare('SELECT `id`, `login`, `email`, `password`, `role` FROM `users` WHERE id != ?');
+$users->execute([$_SESSION['id']]);
+$users = $users -> fetchAll();
+
+
+
 if (
     isset($_SESSION['login']) &&
     !empty($_SESSION['login']) &&
@@ -8,33 +17,32 @@ if (
 ):
 ?>
 
-<!DOCTYPE html>
-<html lang="ru">
+    <!DOCTYPE html>
+    <html lang="ru">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/files.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-    <script src="../js/script.js" defer></script>
-    <script src="../js/files.js" defer></script>
-    <title>Корпоративное хранилище</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/files.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+        <script src="../js/script.js" defer></script>
+        <script src="../js/files.js" defer></script>
+        <title>Корпоративное хранилище</title>
+    </head>
 
-<body>
-    <header class="header">
+    <body>
+        <header class="header">
         <a href="#"><img class="logo" src="../images/logo.webp" alt="Логотип компании"></a>
         <nav class="header__nav">
             <div class="header__cat">
                 <a href="userPage.php" class="header__cat-link active">Главная</a>
-                <a href="filesPage.php" class="header__cat-link">Файлы</a>
-                <a href="#" class="header__cat-link">Совместная работа</a>
-                <a href="#" class="header__cat-link">Безопасность</a>
-                <a href="#" class="header__cat-link">Помощь</a>
-                <a href="#" class="header__cat-link">Уведомления</a>
+                <a href="filesPage.php" class="header__cat-link">Отправка файлов</a>
+                <a href="securityPage.php" class="header__cat-link">Безопасность</a>
+                <a href="helpPage.php" class="header__cat-link">Помощь</a>
+
             </div>
             <div class="header__user">
                 <div class="profile-container">
@@ -53,26 +61,55 @@ if (
             </div>
         </nav>
     </header>
-    <main>
-        <div class="file-upload-form">
-  <h2 class="form-title">Загрузить файлы</h2>
-  
-  <form action="../php/sendFile.php" method="post" enctype="multipart/form-data">
-  <div class="file-upload-area">
-    <div class="file-upload-icon">📁</div>
-    <p class="file-upload-text">Перетащите файлы сюда или нажмите для выбора</p>
-    <p class="file-upload-hint">Поддерживаемые форматы: JPG, PNG, PDF, DOC до 10 МБ</p>
-    <input type="button" id="addFileBtn" value="Добавить файл">
-    <input type="file" id="fileInput" style="display: none;">  
-    <div id="fileList" style="margin-top:10px">Выбранные файлы: <ul style="width: fit-content; margin: auto;"></ul></div>
-  </div>
-  
-  <button type="submit" class="submit-button" name="fileBttn">Загрузить файлы</button>
-</div>
-</form>
-    </main>
+        <main>
+            
+            
+            <div class="file-upload-form">
+                <h2 class="form-title">Загрузить файлы</h2>
+                
+                <form action="../php/sendFile.php" method="post" enctype="multipart/form-data">
+    <!-- Зона загрузки файлов -->
+    <div class="file-upload-area" id="dropZone">
+        <div class="file-upload-icon">📁</div>
+        <p class="file-upload-text">Перетащите файлы сюда или нажмите для выбора</p>
+        <p class="file-upload-hint">Поддерживаемые форматы: JPG, PNG, PDF, DOC до 10 МБ</p>
+        <input type="file" id="fileInput" name="files[]" multiple class="file-upload-input">
+    </div>
 
-    </html>
+    <!-- Список выбранных файлов -->
+    <div id="fileList" style="margin-top: 10px;">
+        <ul style="list-style-type: disc; padding-left: 20px;"></ul>
+    </div>
+
+    <!-- Скрытое поле с ID получателя -->
+    <input type="hidden" name="receiverId" id="receiverId">
+
+    <!-- Кнопка отправки -->
+    <button type="submit" class="submit-button" name="fileBttn">Загрузить файлы</button>
+
+    <!-- Список пользователей -->
+    <div style="margin-top: 30px;">
+        <? foreach ($users as $user): ?>
+            <div class="users" style="margin: 20px 0; border: 1px solid #3498db; padding: 10px; border-radius: 5px;">
+                <p>ID пользователя: <?= $user['id'] ?></p>
+                <p>Имя пользователя: <?= $user['login'] ?></p>
+                <p>Email пользователя: <?= $user['email'] ?></p>
+                <button type="button" onclick="selectUser(<?= $user['id'] ?>)">Выбрать</button>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</form>
+
+<!-- JS для выбора пользователя -->
+<script>
+    function selectUser(id) {
+        document.getElementById('receiverId').value = id;
+        alert('Вы выбрали пользователя с ID: ' + id);
+    }
+</script>
+            </main>
+            
+            </html>
 <? else: ?>
 
     <!DOCTYPE html>

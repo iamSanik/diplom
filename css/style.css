@@ -17,6 +17,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #e9f7ff;
+  opacity: 0.9;
 }
 
 .header__nav {
@@ -206,3 +207,38 @@ display: none;
 }
 
 
+button {
+    background-color: #e0f0ff; /* светло-голубой фон */
+    color: #1a3e7b; /* тёмно-синий текст */
+    border: 1px solid #a0c4ff; /* светлая рамка */
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(26, 62, 123, 0.15);
+}
+
+button:hover {
+    background-color: #c0dfff; /* чуть ярче при наведении */
+    box-shadow: 0 4px 8px rgba(26, 62, 123, 0.3);
+}
+
+select {
+    padding: 5px 8px;
+    border: 1px solid #a0c4ff;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #1a3e7b;
+    background-color: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
+}
+
+/* Немного отступов для формы */

@@ -4,6 +4,28 @@ if ($_SESSION['role'] == 1) {
     header('location: adminPage.php');
 }
 
+if (isset($_SESSION['id'])) {
+    require_once '../db/connection.php';
+
+    // Получаем файлы, отправленные текущему пользователю или всем пользователям
+    $stmt = $conn->prepare("SELECT id, sender_id, receiver_id, file_name, mime_type, upload_date, status FROM files  WHERE receiver_id = ? OR receiver_id = 0 ORDER BY upload_date DESC");
+    $stmt->execute([$_SESSION['id']]);
+    $files = $stmt->fetchAll();
+
+    // Дополнительно получаем информацию об отправителях для отображения имен
+    $users = [];
+    $stmt = $conn->prepare("SELECT id, login FROM users");
+    $stmt->execute();
+    $userResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($userResults as $user) {
+        $users[$user['id']] = $user['username'];
+    }
+} else {
+    header('location:../index.html');
+    exit;
+}
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -18,6 +40,80 @@ if ($_SESSION['role'] == 1) {
     <script src="../js/script.js" defer></script>
     <title>Корпоративное хранилище</title>
 </head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 200px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .files-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .files-table th, .files-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        .files-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .files-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .status-new {
+            background-color: #d0f0ff !important;
+        }
+        
+        .status-read {
+            background-color: #f5f5f5 !important;
+        }
+        
+        .status-form {
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: none;
+            box-shadow: none;
+        }
+        
+        .download-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .download-link:hover {
+            text-decoration: underline;
+        }
+        
+        .no-files {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+</style>
 
 <body>
     <header class="header">
@@ -25,11 +121,9 @@ if ($_SESSION['role'] == 1) {
         <nav class="header__nav">
             <div class="header__cat">
                 <a href="userPage.php" class="header__cat-link active">Главная</a>
-                <a href="filesPage.php" class="header__cat-link">Файлы</a>
-                <a href="#" class="header__cat-link">Совместная работа</a>
-                <a href="#" class="header__cat-link">Безопасность</a>
-                <a href="#" class="header__cat-link">Помощь</a>
-                <a href="#" class="header__cat-link">Уведомления</a>
+                <a href="filesPage.php" class="header__cat-link">Отправка файлов</a>
+                <a href="securityPage.php" class="header__cat-link">Безопасность</a>
+                <a href="helpPage.php" class="header__cat-link">Помощь</a>
             </div>
             <div class="header__user">
                 <div class="profile-container">
@@ -51,6 +145,80 @@ if ($_SESSION['role'] == 1) {
 
     <main>
 
+
+    <div class="container">
+        <h1>Мои файлы</h1>
+        
+        <?php if (!empty($files)): ?>
+            <table class="files-table">
+                <thead>
+                    <tr>
+                        <th>Имя файла</th>
+                        <th>Отправитель</th>
+                        <th>Тип файла</th>
+                        <th>Дата загрузки</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($files as $file): ?>
+                        <?php $statusClass = ($file['status'] === 'новое') ? 'status-new' : 'status-read'; ?>
+                        <tr class="<?= $statusClass ?>">
+                            <td><?= $file['file_name'] ?></td>
+                            <td>
+                                <?php 
+                                if ($file['sender_id'] == 0) {
+                                    echo 'Системное сообщение';
+                                } else {
+                                    echo isset($users[$file['sender_id']]) ? 
+                                        htmlspecialchars($users[$file['sender_id']]) : 
+                                        'Пользователь #' . $file['sender_id'];
+                                }
+                                ?>
+                            </td>
+                            <td><?= $file['mime_type'] ?></td>
+                            <td><?= $file['upload_date'] ?></td>
+                            <td>
+                                <? if($file['status'] === 'Новое'): ?>
+                                <form method="post" action="../php/updateStatus.php" class="status-form">
+                                    
+                                    <select name="status" onchange="this.form.submit()">
+                                        <option value="Новое" <?= $file['status'] === 'Новое' ? 'selected' : '' ?>>Новое</option>
+                                        <option value="Просмотрено" <?= $file['status'] === 'Просмотрено' ? 'selected' : '' ?>>Просмотрено</option>
+                                    </select>
+                                    <input type="hidden" name="message_id" value="<?= $file['id'] ?>">
+                                </form>
+                                <?else:?>
+                                    <p>Просмотрено</p>
+                                <?endif?>
+                            </td>
+                            <td>
+                                <a href="../php/download.php?id=<?= $file['id'] ?>" class="download-link">Скачать</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <div class="no-files">
+                <p>У вас нет доступных файлов</p>
+            </div>
+        <?php endif; ?>
+    </div>
+    
+    <script>
+        // Автоматическая отправка формы при изменении статуса
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusSelects = document.querySelectorAll('.status-form select');
+            
+            statusSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    this.closest('form').submit();
+                });
+            });
+        });
+    </script>
     </main>
 </body>
 

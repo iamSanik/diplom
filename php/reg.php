@@ -18,7 +18,7 @@ if (!empty($_POST['username'])
         try {
             $stmt = $conn->prepare('insert into users (login, email, password) values (?, ?, ?)');
             $stmt->execute(array($_POST['username'], $_POST['email'], $_POST['password']));
-            header('location:../pages/authPage.php'); // Перенаправление на страницу входа после успешной регистрации
+            header('location:../index.php'); // Перенаправление на страницу входа после успешной регистрации
             exit();
         } catch (PDOException $e) {
             $_SESSION['error'] = "Ошибка при регистрации: " . $e->getMessage();
