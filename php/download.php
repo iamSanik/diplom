@@ -6,13 +6,9 @@ if (isset($_SESSION['id']) && isset($_GET['id'])) {
     $fileId = $_GET['id'];
     
     // Проверяем, имеет ли пользователь доступ к этому файлу
-    $stmt = $conn->prepare("
-        SELECT file_name, mime_type, file_data 
-        FROM files 
-        WHERE id = ? AND (receiver_id = ? OR receiver_id = 0)
-    ");
+    $stmt = $conn->prepare("SELECT file_name, mime_type, file_data FROM files WHERE id = ? AND (receiver_id = ? OR receiver_id = 0)");
     $stmt->execute([$fileId, $_SESSION['id']]);
-    $file = $stmt->fetch(PDO::FETCH_ASSOC);
+    $file = $stmt->fetch();
     
     if ($file) {
         // Обновляем статус на "просмотрено"

@@ -207,7 +207,7 @@ display: none;
 }
 
 
-button {
+button, input[type='submit'] {
     background-color: #e0f0ff; /* светло-голубой фон */
     color: #1a3e7b; /* тёмно-синий текст */
     border: 1px solid #a0c4ff; /* светлая рамка */
@@ -241,4 +241,4 @@ select:focus {
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
 }
 
-/* Немного отступов для формы */
+

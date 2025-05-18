@@ -18,7 +18,7 @@ if (!empty($_FILES['files']['name'][0])) {
         }
 
         $fileData = file_get_contents($fileTmp);
-        if (!$_POST['receiver_id']) {
+        if (!$_POST['receiverId']) {
             $stmt = $conn->prepare("INSERT INTO files (sender_id, receiver_id, file_name, mime_type, file_data) VALUES (?, 0, ?, ?, ?)");
             $success = $stmt->execute([$_SESSION['id'], $fileName, $fileType, $fileData]);
         } else {
