@@ -1,3 +1,11 @@
+<?php
+
+if(!empty($_GET['authError'])){
+    $authErr = $_GET['authError'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -83,25 +91,14 @@
         <form method="post" action="php/auth.php">
             <div class="form-group">
                 <label for="username" class="form-label">Имя пользователя</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    class="form-input"
-                    placeholder="Введите имя пользователя"
-                    required>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Введите имя пользователя" required>
             </div>
 
             <div class="form-group">
                 <label for="password" class="form-label">Пароль</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-input"
-                    placeholder="Введите пароль"
-                    required>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Введите пароль" required>
             </div>
+            <p><?=$authErr?></p>
 
             <button type="submit" class="form-button">Войти</button>
         </form>

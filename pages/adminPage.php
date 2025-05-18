@@ -11,6 +11,12 @@ $users = $conn->prepare('SELECT `id`, `login`, `email`, `password`, `role` FROM 
 $users->execute([$_SESSION['id']]);
 $users = $users->fetchAll();
 
+
+
+if(!empty($_GET['error'])){
+    $err = $_GET['error'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -85,6 +91,7 @@ $users = $users->fetchAll();
                             <input type="email" id="email" name="email" required><br>
                             <label for="password">Пароль:</label><br>
                             <input type="password" id="password" name="password" required><br>
+                            <p><?= $err ?></p>
                             <input type="submit" value="войти">
                         </form>
                     </div>
@@ -92,13 +99,16 @@ $users = $users->fetchAll();
             </div>
             <div style="margin-top: 30px;">
                 <? foreach ($users as $user): ?>
-                    <form class="users" action="../php/deleteUser.php" method="post">
+                    <form class="users" action="../php/EditUser.php" method="post">
 
                         <p>ID пользователя: <?= $user['id'] ?></p>
                         <p>Имя пользователя: <?= $user['login'] ?></p>
                         <p>Email пользователя: <?= $user['email'] ?></p>
-                        <input type="hidden" name="delUserId" value="<?= $user['id'] ?>">
-                        <input type="submit" value="Удалить пользователя">
+                        <input style="margin-bottom: 10px;" type="text" name="changePass" placeholder="<?= $user['password']?>">
+                        <input type="submit" name="changePassBtn" value="Изменить пароль">
+
+                        <input type="hidden" name="UserId" value="<?= $user['id'] ?>">
+                        <input type="submit" name="delUserBtn" value="Удалить пользователя">
 
                     </form>
                 <?php endforeach; ?>

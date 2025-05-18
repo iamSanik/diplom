@@ -12,18 +12,13 @@ if (!empty($_POST['username'])
 
     if ($checkUser) {
         $_SESSION['error'] = "Пользователь с таким именем или email уже существует.";
-        header("location:../index.php");
-        exit();
+        header("Location: ../pages/adminPage.php?error=Данный логин или email заняты");
+        
     } else {
-        try {
             $stmt = $conn->prepare('insert into users (login, email, password) values (?, ?, ?)');
             $stmt->execute(array($_POST['username'], $_POST['email'], $_POST['password']));
-            header('location:../index.php'); // Перенаправление на страницу входа после успешной регистрации
-            exit();
-        } catch (PDOException $e) {
-            $_SESSION['error'] = "Ошибка при регистрации: " . $e->getMessage();
-            header("location:../index.php");
-            exit();
-        }
-    }
+            header('location:../pages/adminPage.php'); // Перенаправление на страницу входа после успешной регистрации
 }
+}
+
+?>

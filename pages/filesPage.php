@@ -8,6 +8,14 @@ $users->execute([$_SESSION['id']]);
 $users = $users->fetchAll();
 
 
+if(!empty($_GET['sizeError'])){
+    $sizeErr = $_GET['sizeError'];
+}
+
+if(!empty($_GET['info'])){
+    $info = $_GET['info'];
+}
+
 
 if (
     isset($_SESSION['login']) &&
@@ -83,7 +91,10 @@ if (
 
                     <!-- Скрытое поле с ID получателя -->
                     <input type="hidden" name="receiverId" id="receiverId">
-
+                    <div style="margin-bottom: 10px ;">
+                    <strong style="color: red;" font><?= $sizeErr?></strong>
+                    <strong style="color:lightgreen"><?= $info?></strong>
+                    </div>
                     <!-- Кнопка отправки -->
                     <button type="submit" class="submit-button" name="fileBttn">Загрузить файлы</button>
 

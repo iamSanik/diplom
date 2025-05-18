@@ -12,8 +12,9 @@ if (!empty($_FILES['files']['name'][0])) {
         $fileType = $_FILES['files']['type'][$i];
         $fileSize = $_FILES['files']['size'][$i];
 
-        if ($fileSize > 10 * 1024 * 1024) {
-            echo "Файл {$fileName} превышает 10 МБ и не был загружен.<br>";
+        if ($fileSize > 4 * 1024 * 1024 * 1024) {
+            echo "Файл {$fileName} превышает 4 ГБ и не был загружен.<br>";
+            $location = "location:../pages/filesPage.php?sizeError=Файл $fileName превышает 10 МБ и не был загружен.";
             continue;
         }
 
@@ -27,14 +28,14 @@ if (!empty($_FILES['files']['name'][0])) {
         }
         if ($success) {
             echo "Файл {$fileName} успешно загружен.<br>";
-            $location = 'location:../pages/filesPage.php';
+            $location = "location:../pages/filesPage.php?info=Файл {$fileName} успешно загружен.";
         } else {
             echo "Ошибка при загрузке {$fileName}.<br>";
-            $location = 'location:../pages/filesPage.php';
+            $location = "location:../pages/filesPage.php?info=Ошибка при загрузке {$fileName}.";
         }
     }
 } else {
     echo "Файлы не выбраны.";
-    $location = 'location:../pages/filesPage.php';
+    $location = "location:../pages/filesPage.php?info=Файлы не выбраны.";
 }
 header($location);
