@@ -1,31 +1,48 @@
 <?php
 session_start();
-if (isset($_SESSION['id']) && isset($_GET['id'])) {
-    require_once '../db/connection.php';
-    
-    $fileId = $_GET['id'];
-    
-    // Проверяем, имеет ли пользователь доступ к этому файлу
-    $stmt = $conn->prepare("SELECT file_name, mime_type, file_data FROM files WHERE id = ? AND (receiver_id = ? OR receiver_id = 0)");
-    $stmt->execute([$fileId, $_SESSION['id']]);
-    $file = $stmt->fetch();
-    
-    if ($file) {
-        // Обновляем статус на "просмотрено"
-        $updateStmt = $conn->prepare("UPDATE files SET status = 'просмотрено' WHERE id = ?");
-        $updateStmt->execute([$fileId]);
-        
-        // Отправляем файл пользователю для скачивания
-        header('Content-Type: ' . $file['mime_type']);
-        header('Content-Disposition: attachment; filename="' . $file['file_name'] . '"');
-        header('Content-Length: ' . strlen($file['file_data']));
-        echo $file['file_data'];
-        exit;
-    } else {
-        // Если файл не найден или пользователь не имеет к нему доступа
-        header('HTTP/1.0 403 Forbidden');
-        echo "Доступ запрещен";
-    }
-} else {
-    header('location:../index.html');
+
+if (!isset($_SESSION['id'])) {
+    header('Location: ../index.html');
+    exit;
 }
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die('Некорректный ID файла.');
+}
+
+require_once '../db/connection.php';
+
+$fileId = intval($_GET['id']);
+$userId = $_SESSION['id'];
+
+// Получаем данные файла из БД
+$stmt = $conn->prepare("
+    SELECT file_name, mime_type, file_path, receiver_id, sender_id 
+    FROM files 
+    WHERE id = ? AND (receiver_id = ? OR receiver_id = 0)
+");
+$stmt->execute([$fileId, $userId]);
+$file = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$file) {
+    die('Файл не найден или у вас нет к нему доступа.');
+}
+
+// Формируем путь к файлу на сервере из file_path
+$filePath = '../' . $file['file_path'];
+
+if (!file_exists($filePath)) {
+    die('Файл не найден на сервере.');
+}
+
+// Отправляем заголовки для скачивания файла
+header('Content-Description: File Transfer');
+header('Content-Type: ' . $file['mime_type']);
+header('Content-Disposition: attachment; filename="' . basename($file['file_name']) . '"');
+header('Content-Length: ' . filesize($filePath));
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+header('Expires: 0');
+
+readfile($filePath);
+exit;

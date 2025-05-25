@@ -259,8 +259,8 @@
 /* Адаптивность для мобильных устройств */
 @media (max-width: 767px) {
   .file-upload-form {
+    margin: 50px auto;
     padding: 20px;
-    margin: 15px;
   }
   
   .file-upload-area {

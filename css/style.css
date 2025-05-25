@@ -1,7 +1,6 @@
-
 body {
   margin: 0;
-  font-family:'Comfortaa', cursive;
+  font-family: 'Comfortaa', cursive;
   background-color: #ffffff; /* Белый фон */
 }
 .header {
@@ -41,9 +40,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 20vw;
-
 }
-
 
 .header__cat-link {
   position: relative;
@@ -54,7 +51,7 @@ body {
 }
 
 .header__cat-link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -78,13 +75,11 @@ body {
   transform-origin: bottom right;
 }
 
-
 .logo {
   width: 200px;
   height: 200px;
   border-radius: 15%;
 }
-
 
 .search-container {
   display: flex;
@@ -111,12 +106,11 @@ body {
   border-color: blue;
 }
 
-
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-    position: relative;
+  position: relative;
 }
 
 .profile-container p {
@@ -137,48 +131,47 @@ body {
 }
 
 summary {
-    list-style: none;
+  list-style: none;
 }
 
 .sign_up {
-    background-color: #437bce; 
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: #437bce;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 #registrationForm {
-    
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 15vw; 
-    z-index: 10; 
-    background-color: #fff; 
-    padding: 15px; 
-    border: 1px solid #ccc; 
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px; 
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 15vw;
+  z-index: 10;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 #registrationForm input[type="text"],
 #registrationForm input[type="email"],
 #registrationForm input[type="password"] {
-  width: calc(100% - 20px); 
+  width: calc(100% - 20px);
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
-#registrationForm input[type="submit"]{
+#registrationForm input[type="submit"] {
   background-color: #437bce;
   color: white;
   padding: 10px 15px;
@@ -187,27 +180,324 @@ summary {
   cursor: pointer;
   width: 100%;
 }
-#registrationForm input[type="submit"]:hover{
+#registrationForm input[type="submit"]:hover {
   background-color: #2e5ba4;
 }
 
 #registrationForm label {
-  display: block; 
+  display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-.form{
-display: none;
+.form {
+  display: none;
 }
 
-
-.form:hover{
+.form:hover {
   display: flex;
 }
 
+button,
+.download__btn {
+  background-color: #e0f0ff; /* светло-голубой фон */
+  color: #1a3e7b; /* тёмно-синий текст */
+  border: 1px solid #a0c4ff; /* светлая рамка */
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(26, 62, 123, 0.15);
+}
 
-button, input[type='submit'] {
+button:hover {
+  background-color: #c0dfff; /* чуть ярче при наведении */
+  box-shadow: 0 4px 8px rgba(26, 62, 123, 0.3);
+}
+
+select {
+  padding: 5px 8px;
+  border: 1px solid #a0c4ff;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #1a3e7b;
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
+}
+
+.page-content {
+  padding-top: 120px; /* По умолчанию */
+}
+
+body {
+  margin: 0;
+  font-family: "Comfortaa", cursive;
+  background-color: #ffffff;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e9f7ff;
+  z-index: 100;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 0 50px;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.9;
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75vw;
+  align-items: center;
+}
+
+.header__cat {
+  display: flex;
+  flex-direction: row;
+  width: 70vw;
+  justify-content: space-around;
+  margin-right: 35px;
+  align-items: center;
+}
+
+.header__user {
+  display: flex;
+  flex-direction: row;
+  width: 20vw;
+}
+
+.header__cat-link {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  color: #004d99;
+  transition: color 0.3s ease;
+}
+
+.header__cat-link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: black;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.header__cat-link:hover {
+  color: blue;
+}
+
+.header__cat-link.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.header__cat-link.from-right::after {
+  transform-origin: bottom right;
+}
+
+
+.profile-container form {
+  width: 100%;
+}
+.profile-container__info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.profile-container__button {
+  width: 100%;
+  background-color: #e0f0ff; /* светло-голубой фон */
+  color: #1a3e7b; /* тёмно-синий текст */
+  border: 1px solid #a0c4ff; /* светлая рамка */
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(26, 62, 123, 0.15);
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  border-radius: 15%;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: -50px;
+}
+
+.search-container p {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.search-container input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 150px;
+  transition: border-color 0.3s ease;
+}
+
+.search-container input[type="text"]:focus {
+  outline: none;
+  border-color: blue;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.profile-container p {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.profile-container a {
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.profile-container a:hover {
+  color: blue;
+}
+
+summary {
+  list-style: none;
+}
+
+.sign_up {
+  background-color: #437bce;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#registrationForm {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 15vw;
+  z-index: 10;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+#registrationForm input[type="text"],
+#registrationForm input[type="email"],
+#registrationForm input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#registrationForm input[type="submit"] {
+  background-color: #437bce;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#registrationForm input[type="submit"]:hover {
+  background-color: #2e5ba4;
+}
+
+#registrationForm label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form {
+  display: none;
+}
+
+.form:hover {
+  display: flex;
+}
+
+button:hover {
+  background-color: #c0dfff;
+  box-shadow: 0 4px 8px rgba(26, 62, 123, 0.3);
+}
+
+select {
+  padding: 5px 8px;
+  border: 1px solid #a0c4ff;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #1a3e7b;
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
+}
+
+/* --- Адаптив под мобильные устройства --- */
+@media (max-width: 768px) {
+  .header {
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    gap: 15px;
+    text-align: center;
+    margin: 0 auto 0 auto;
+  }
+
+  .profile-container__button {
+    width: 100%;
+    height: 35px;
     background-color: #e0f0ff; /* светло-голубой фон */
     color: #1a3e7b; /* тёмно-синий текст */
     border: 1px solid #a0c4ff; /* светлая рамка */
@@ -217,28 +507,111 @@ button, input[type='submit'] {
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(26, 62, 123, 0.15);
+  }
+
+  .profile-container {
+    display: flex;
+    width: 225px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .logo {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+  }
+
+  .header__nav {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .header__cat {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    padding: 20px 0;
+    margin: auto;
+  }
+
+  .header__cat-link {
+    font-size: 20px;
+    padding: 12px 24px;
+    background-color: #e6f0ff;
+    border-radius: 8px;
+    text-align: center;
+    width: 90%;
+    max-width: 300px;
+    color: #004d99;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .header__cat-link::after {
+    height: 3px;
+    bottom: -6px;
+  }
+
+  .header__cat-link:hover {
+    background-color: #d0e7ff;
+    color: #003366;
+  }
+
+  .header__user {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  main {
+    padding-top: 20px;
+  }
+
+  .search-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-container input[type="text"] {
+    width: 80%;
+  }
+
+  .profile-container p,
+  .profile-container a {
+    font-size: 16px;
+  }
+
+  .sign_up {
+    width: 80%;
+    padding: 10px;
+  }
+
+  #registrationForm {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 110%;
+  }
+
+  button,
+  input[type="submit"] {
+    width: 100%;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  #registrationDetails {
+    margin: auto;
+  }
 }
-
-button:hover {
-    background-color: #c0dfff; /* чуть ярче при наведении */
-    box-shadow: 0 4px 8px rgba(26, 62, 123, 0.3);
-}
-
-select {
-    padding: 5px 8px;
-    border: 1px solid #a0c4ff;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #1a3e7b;
-    background-color: #fff;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease;
-}
-
-select:focus {
-    border-color: #4a90e2;
-    outline: none;
-    box-shadow: 0 0 5px rgba(74, 144, 226, 0.6);
-}
-
-

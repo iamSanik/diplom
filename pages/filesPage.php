@@ -43,17 +43,16 @@ if (
 
     <body>
         <header class="header">
-            <a href="#"><img class="logo" src="../images/logo.webp" alt="Логотип компании"></a>
-            <nav class="header__nav">
-                <div class="header__cat">
-                    <a href="userPage.php" class="header__cat-link active">Главная</a>
-                    <a href="filesPage.php" class="header__cat-link">Отправка файлов</a>
-                    <a href="securityPage.php" class="header__cat-link">Безопасность</a>
-                    <a href="helpPage.php" class="header__cat-link">Помощь</a>
-
-                </div>
-                <div class="header__user">
-                    <div class="profile-container">
+        <a href="#"><img class="logo" src="../images/logo.webp" alt="Логотип компании"></a>
+        <nav class="header__nav">
+            <div class="header__cat">
+                <a href="userPage.php" class="header__cat-link active">Главная</a>
+                <a href="filesPage.php" class="header__cat-link">Отправка файлов</a>
+                <a href="helpPage.php" class="header__cat-link">Помощь</a>
+            </div>
+            <div class="header__user">
+                <div class="profile-container">
+                    <div class="profile-container__info">
                         <svg width="64px" height="64px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.4800000000000001"></g>
@@ -64,14 +63,17 @@ if (
                             </g>
                         </svg>
                         <p><? echo $_SESSION['login'] ?></p>
-                        <a href="../php/logout.php">Выйти</a>
                     </div>
+                    <form action="../php/logout.php" method="post" style="margin-top: 8px;">
+                        <input class="profile-container__button" type="submit" value="Выйти">
+                    </form>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
         <main>
 
-
+        <div class="container">
             <div class="file-upload-form">
                 <h2 class="form-title">Загрузить файлы</h2>
 
@@ -135,23 +137,15 @@ if (
                         document.getElementById('receiverId').value = id;
                     }
                 </script>
+            </div>
+        </div>
+            
         </main>
 
     </html>
-<? else: ?>
+<? else: 
+    
+    header('location:../index.php');
+    ?>
 
-    <!DOCTYPE html>
-    <html lang="ru">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-
-    <body>
-        <h1>только для авторизированных пользователей</h1>
-    </body>
-
-    </html>
 <? endif ?>

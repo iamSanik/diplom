@@ -1,0 +1,85 @@
+.header__manage {
+        margin: 150px auto;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        text-align: center;
+    }
+
+    .users {
+        border: 1px solid #3498db;
+        margin: 25px auto;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+
+
+
+    input[type="text"] {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', cursive;
+}
+
+input[type="text"]:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.input[type="submit"]{
+	background-color: #e0f0ff; /* светло-голубой фон */
+  color: #1a3e7b; /* тёмно-синий текст */
+  border: 1px solid #a0c4ff; /* светлая рамка */
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(26, 62, 123, 0.15);
+}
+
+@media (max-width: 768px) {
+    .header__manage {
+        margin: 0 auto;
+        width: 90%;
+        max-width: none; /* убираем ограничение по ширине */
+    }
+
+    .users {
+        width: 100% ; /* блок на всю ширину контейнера */
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .users input[type="text"] {
+        width: 100% ;
+        font-size: 18px; 
+    }
+
+    .users input[type="submit"] {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        width: auto;
+    }
+
+.input[type="submit"]{
+	background-color: #e0f0ff; /* светло-голубой фон */
+  color: #1a3e7b; /* тёмно-синий текст */
+  border: 1px solid #a0c4ff; /* светлая рамка */
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(26, 62, 123, 0.15);
+}
+}

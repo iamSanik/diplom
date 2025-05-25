@@ -1,0 +1,144 @@
+/* Базовые стили */
+body {
+  font-family: "Comfortaa", cursive;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 200px auto;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Таблица файлов */
+.files-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.files-table th,
+.files-table td {
+  padding: 14px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.files-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.files-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.files-table tbody tr:hover {
+  background-color: #e6f7ff;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.status-new {
+  background-color: #d0f0ff !important;
+}
+
+.status-read {
+  background-color: #f5f5f5 !important;
+}
+
+/* Форма смены статуса */
+.status-form {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+.status-form select {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Ссылки */
+.download-link {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.download-link:hover {
+  text-decoration: underline;
+}
+
+/* Пустой список */
+.no-files {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-size: 16px;
+}
+
+
+
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .container {
+    margin: 50px auto;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .files-table {
+    font-size: 18px;
+  }
+
+  .files-table th,
+  .files-table td {
+    padding: 18px 14px;
+  }
+
+  .files-table select,
+  .files-table button {
+    font-size: 18px;
+    padding: 10px 12px;
+  }
+
+  .status-form select {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+
+  .download-button {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+}
